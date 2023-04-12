@@ -7,6 +7,11 @@ public class Subscription {
     private String bankcard;
     private LocalDate startDate;
 
+    public Subscription(String bankcard, LocalDate localDate) {
+        this.bankcard = bankcard;
+        this.startDate = localDate;
+    }
+
     public String getBankcard() {
         return bankcard;
     }
