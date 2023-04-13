@@ -17,6 +17,7 @@ public class User {
         this.surname = surname;
         this.birthday = localDate;
     }
+
     public String getName() {
         return name;
     }

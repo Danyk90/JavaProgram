@@ -11,9 +11,10 @@ import java.util.function.Predicate;
 
 public interface Service {
 
-   static boolean isEighteenYrsOld() {
-       return false;
-   }
+    static boolean isEighteenYrsOld() {
+        return false;
+    }
+
     void subscribe(BankCard bankCard);
 
     Optional<Subscription> getSubscriptionByBankCardNumber(String number);
@@ -26,6 +27,7 @@ public interface Service {
 
         return user.getBirthday().isBefore(LocalDate.now().minusYears(18));
     }
+
     default double getAverageUserAge() {
 
         return getAllUsers()

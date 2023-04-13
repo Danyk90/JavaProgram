@@ -1,11 +1,11 @@
 package org.epam.application;
 
 import impl.BankCloudImpl;
-
-import serviceImpl.CloudServiceImpl;
+import org.epam.application.exception.SubscriptionException;
 import org.epam.homework.dto.BankCardType;
 import org.epam.homework.dto.Subscription;
 import org.epam.homework.dto.User;
+import serviceImpl.CloudServiceImpl;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,14 +24,17 @@ public class Main {
         service.subscribe(bankCard);
         service.subscribe(bankCard2);
 
-        Optional<Subscription> subscriptionByCard = service.getSubscriptionByBankCardNumber(bankCard.getNumber());
-        subscriptionByCard.ifPresent(System.out::println);
+        Subscription subscriptionByCard = service
+                .getSubscriptionByBankCardNumber(bankCard.getNumber())
+                .orElseThrow(()->new SubscriptionException("Subscription not found"));
+
+        System.out.println(subscriptionByCard);
         //returning avg number of user age in days
         System.out.println(service.getAverageUserAge());
         //finding all subscription based on provided filter
         List<Subscription> subscriptionList = service
                 .getAllSubscriptionsByCondition(subscription ->
-                subscription.getStartDate().isEqual(LocalDate.now()));
+                        subscription.getStartDate().isEqual(LocalDate.now()));
         System.out.println(subscriptionList);
     }
 }

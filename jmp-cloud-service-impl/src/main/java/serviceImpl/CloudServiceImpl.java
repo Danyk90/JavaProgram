@@ -20,7 +20,7 @@ public class CloudServiceImpl implements Service {
         var user = bankCard.getUser();
         var number = bankCard.getNumber();
         var subscription = new Subscription(number, LocalDate.now());
-        userStorage.computeIfAbsent(user, u-> new LinkedList<>()).add(subscription);
+        userStorage.computeIfAbsent(user, u -> new LinkedList<>()).add(subscription);
     }
 
     @Override

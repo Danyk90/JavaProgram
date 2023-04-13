@@ -1,7 +1,5 @@
 package org.epam.homework.dto;
 
-import org.epam.homework.dto.BankCard;
-
 public class DebitBankCard extends BankCard {
 
 
