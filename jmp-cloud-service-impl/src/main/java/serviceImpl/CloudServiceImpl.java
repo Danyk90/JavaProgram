@@ -7,6 +7,8 @@ import service.Service;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class CloudServiceImpl implements Service {
 
@@ -36,5 +38,15 @@ public class CloudServiceImpl implements Service {
     public List<User> getAllUsers() {
 
         return new ArrayList<>(userStorage.keySet());
+    }
+
+    @Override
+    public List<Subscription> getAllSubscriptionsByCondition(Predicate<Subscription> predicate) {
+
+        return userStorage.values()
+                .stream()
+                .flatMap(Collection::stream)
+                .filter(predicate)
+                .collect(Collectors.toList());
     }
 }
